@@ -1,14 +1,135 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>TPCCL Developer Panel</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/typography.css">
+    <link rel="stylesheet" href="/css/main.css">
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Lexend Deca", sans-serif;
+            background: var(--color-background);
+            color: var(--color-on-background);
+        }
+
+        .admin-shell {
+            min-height: 100vh;
+            background: var(--color-background);
+            color: var(--color-on-background);
+        }
+
+        .admin-header {
+            padding: 18px 24px;
+            background: var(--color-primary);
+            color: var(--color-on-primary);
+        }
+
+        .admin-header h1 {
+            margin: 0;
+            font-family: "Lexend Deca", sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .admin-content {
+            width: min(700px, calc(100% - 32px));
+            margin: 32px auto;
+        }
+
+        .admin-card {
+            padding: 24px;
+            border: 1px solid var(--color-background-hover);
+            border-radius: 14px;
+            background: var(--color-background);
+            color: var(--color-on-background);
+        }
+
+        .admin-card h2 {
+            margin-top: 0;
+            font-family: "Lexend Deca", sans-serif;
+            font-weight: 700;
+            color: var(--color-on-background);
+        }
+
+        .admin-card p {
+            color: var(--color-on-background);
+        }
+
+        .admin-note {
+            opacity: 0.75;
+            font-size: 14px;
+        }
+
+        .admin-button {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 12px 18px;
+            border: 0;
+            border-radius: 8px;
+            background: var(--color-primary);
+            color: var(--color-on-primary);
+            font-family: "Lexend Deca", sans-serif;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .admin-button:hover {
+            opacity: 0.85;
+        }
+
+        /* Match TPCCL's saved dark-mode colors */
+        .admin-shell.dark {
+            color-scheme: dark;
+            --color-background: #1c1b1f;
+            --color-on-background: white;
+            --color-background-hover: #27262c;
+            --color-primary: #5d25a5;
+            --color-on-primary: white;
+        }
+    </style>
 </head>
 
 <body>
+    <div class="admin-shell" id="admin">
+        <header class="admin-header">
+            <h1>TPCCL Developer Panel</h1>
+        </header>
 
-    <h1>TPCCL Developer Panel</h1>
+        <main class="admin-content">
+            <section class="admin-card">
+                <h2>Welcome, Pie!</h2>
 
-    <p>Developer panel is working!</p>
+                <p>This is your TPCCL developer area.</p>
 
+                <p class="admin-note">
+                    Level-management tools are not implemented yet.
+                </p>
+
+                <a class="admin-button" href="/">Back to TPCCL</a>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const panel = document.getElementById("admin");
+        const savedTheme = localStorage.getItem("dark");
+
+        if (savedTheme === "true") {
+            panel.classList.add("dark");
+        }
+    </script>
 </body>
 </html>
