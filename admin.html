@@ -2,134 +2,332 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TPCCL Developer Panel</title>
 
-    <title>TPCCL Developer Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/typography.css">
+  <link rel="stylesheet" href="/css/main.css">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
 
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/typography.css">
-    <link rel="stylesheet" href="/css/main.css">
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #17151d;
+      color: #f5f1ff;
+      font-family: "Lexend Deca", sans-serif;
+    }
 
-    <style>
-        body {
-            margin: 0;
-            min-height: 100vh;
-            font-family: "Lexend Deca", sans-serif;
-            background: var(--color-background);
-            color: var(--color-on-background);
-        }
+    header {
+      padding: 22px 18px;
+      background: #55239b;
+      border-bottom: 1px solid #7446b3;
+    }
 
-        .admin-shell {
-            min-height: 100vh;
-            background: var(--color-background);
-            color: var(--color-on-background);
-        }
+    header h1 {
+      margin: 0;
+      font-size: 23px;
+    }
 
-        .admin-header {
-            padding: 18px 24px;
-            background: var(--color-primary);
-            color: var(--color-on-primary);
-        }
+    header p {
+      margin: 6px 0 0;
+      font-size: 13px;
+      opacity: .8;
+    }
 
-        .admin-header h1 {
-            margin: 0;
-            font-family: "Lexend Deca", sans-serif;
-            font-size: 24px;
-            font-weight: 700;
-        }
+    main {
+      width: min(680px, calc(100% - 28px));
+      margin: 28px auto;
+    }
 
-        .admin-content {
-            width: min(700px, calc(100% - 32px));
-            margin: 32px auto;
-        }
+    .card {
+      padding: 22px;
+      margin-bottom: 18px;
+      background: #211e29;
+      border: 1px solid #393243;
+      border-radius: 14px;
+    }
 
-        .admin-card {
-            padding: 24px;
-            border: 1px solid var(--color-background-hover);
-            border-radius: 14px;
-            background: var(--color-background);
-            color: var(--color-on-background);
-        }
+    h2 { margin: 0 0 12px; font-size: 19px; }
+    p { line-height: 1.6; }
+    .muted { color: #bdb4ca; font-size: 13px; }
 
-        .admin-card h2 {
-            margin-top: 0;
-            font-family: "Lexend Deca", sans-serif;
-            font-weight: 700;
-            color: var(--color-on-background);
-        }
+    input, textarea {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 13px;
+      border: 1px solid #51465f;
+      border-radius: 8px;
+      background: #15121b;
+      color: white;
+      font: inherit;
+    }
 
-        .admin-card p {
-            color: var(--color-on-background);
-        }
+    button, .button {
+      display: inline-block;
+      padding: 11px 15px;
+      margin: 5px 5px 5px 0;
+      border: 0;
+      border-radius: 8px;
+      background: #7137bd;
+      color: white;
+      font: inherit;
+      font-size: 14px;
+      text-decoration: none;
+      cursor: pointer;
+    }
 
-        .admin-note {
-            opacity: 0.75;
-            font-size: 14px;
-        }
+    button:hover, .button:hover { background: #8852d1; }
+    button:disabled { opacity: .5; cursor: wait; }
+    .danger { background: #922f4a; }
+    .secondary { background: #393243; }
 
-        .admin-button {
-            display: inline-block;
-            margin-top: 12px;
-            padding: 12px 18px;
-            border: 0;
-            border-radius: 8px;
-            background: var(--color-primary);
-            color: var(--color-on-primary);
-            font-family: "Lexend Deca", sans-serif;
-            font-weight: 700;
-            text-decoration: none;
-            cursor: pointer;
-        }
+    .level {
+      padding: 13px;
+      margin: 12px 0;
+      border: 1px solid #393243;
+      border-radius: 9px;
+      overflow-wrap: anywhere;
+    }
 
-        .admin-button:hover {
-            opacity: 0.85;
-        }
-
-        /* Match TPCCL's saved dark-mode colors */
-        .admin-shell.dark {
-            color-scheme: dark;
-            --color-background: #1c1b1f;
-            --color-on-background: white;
-            --color-background-hover: #27262c;
-            --color-primary: #5d25a5;
-            --color-on-primary: white;
-        }
-    </style>
+    .level-name { font-weight: 700; }
+    #notice { white-space: pre-wrap; overflow-wrap: anywhere; }
+    [hidden] { display: none !important; }
+  </style>
 </head>
 
 <body>
-    <div class="admin-shell" id="admin">
-        <header class="admin-header">
-            <h1>TPCCL Developer Panel</h1>
-        </header>
+  <header>
+    <h1>TPCCL Developer Panel</h1>
+    <p>The Pie Consistency Challenge List · Administration</p>
+  </header>
 
-        <main class="admin-content">
-            <section class="admin-card">
-                <h2>Welcome, Pie!</h2>
+  <main>
+    <section class="card" id="login">
+      <h2>Developer verification</h2>
+      <p>Enter your private access code to continue to Google verification.</p>
 
-                <p>This is your TPCCL developer area.</p>
+      <form id="gate-form">
+        <input
+          id="access-code"
+          type="password"
+          placeholder="Private access code"
+          autocomplete="current-password"
+          required
+        >
+        <button id="gate-button" type="submit">Verify access code</button>
+      </form>
 
-                <p class="admin-note">
-                    Level-management tools are not implemented yet.
-                </p>
+      <p class="muted">
+        Your access code must be configured securely on the server before this login can work.
+      </p>
+    </section>
 
-                <a class="admin-button" href="/">Back to TPCCL</a>
-            </section>
-        </main>
-    </div>
+    <section class="card" id="dashboard" hidden>
+      <h2>Level management</h2>
+      <p class="muted">
+        Changes should be saved to the TPCCL repository after server authentication is configured.
+      </p>
 
-    <script>
-        const panel = document.getElementById("admin");
-        const savedTheme = localStorage.getItem("dark");
+      <form id="add-form">
+        <label for="level-name">New level name</label>
+        <input id="level-name" maxlength="100" placeholder="Enter a level name" required>
+        <button type="submit">Add level</button>
+      </form>
 
-        if (savedTheme === "true") {
-            panel.classList.add("dark");
+      <div class="divider"></div>
+      <h2>Current levels</h2>
+      <div id="levels">Loading levels...</div>
+
+      <button class="secondary" id="refresh" type="button">Refresh levels</button>
+      <button class="secondary" id="logout" type="button">Log out</button>
+    </section>
+
+    <section class="card">
+      <p id="notice" class="muted" role="status">Ready.</p>
+      <a class="button secondary" href="/">Back to TPCCL</a>
+    </section>
+  </main>
+
+  <script>
+    const login = document.getElementById("login");
+    const dashboard = document.getElementById("dashboard");
+    const notice = document.getElementById("notice");
+    const levelsBox = document.getElementById("levels");
+
+    async function request(url, options = {}) {
+      const response = await fetch(url, {
+        credentials: "same-origin",
+        ...options,
+        headers: {
+          "Content-Type": "application/json",
+          ...(options.headers || {})
         }
-    </script>
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(data.error || `Request failed (${response.status})`);
+      }
+
+      return data;
+    }
+
+    function showNotice(message) {
+      notice.textContent = message;
+    }
+
+    document.getElementById("gate-form").addEventListener("submit", async event => {
+      event.preventDefault();
+
+      const button = document.getElementById("gate-button");
+      button.disabled = true;
+      showNotice("Checking access code...");
+
+      try {
+        await request("/api/admin/gate", {
+          method: "POST",
+          body: JSON.stringify({
+            code: document.getElementById("access-code").value
+          })
+        });
+
+        showNotice("Access code accepted. Opening Google verification...");
+        window.location.href = "/api/auth/google";
+      } catch (error) {
+        showNotice(error.message);
+      } finally {
+        button.disabled = false;
+      }
+    });
+
+    async function loadLevels() {
+      levelsBox.textContent = "Loading levels...";
+
+      try {
+        const data = await request("/api/admin/levels");
+        const levels = data.levels;
+
+        if (!Array.isArray(levels)) {
+          throw new Error("Unexpected level data from the server.");
+        }
+
+        levelsBox.replaceChildren();
+
+        if (levels.length === 0) {
+          levelsBox.textContent = "No levels found.";
+          return;
+        }
+
+        levels.forEach((name, index) => {
+          const item = document.createElement("div");
+          item.className = "level";
+
+          const title = document.createElement("div");
+          title.className = "level-name";
+          title.textContent = `${index + 1}. ${name}`;
+          item.appendChild(title);
+
+          const up = document.createElement("button");
+          up.textContent = "Move up";
+          up.disabled = index === 0;
+          up.addEventListener("click", () =>
+            changeLevel({ action: "move", name, direction: "up" })
+          );
+          item.appendChild(up);
+
+          const down = document.createElement("button");
+          down.textContent = "Move down";
+          down.disabled = index === levels.length - 1;
+          down.addEventListener("click", () =>
+            changeLevel({ action: "move", name, direction: "down" })
+          );
+          item.appendChild(down);
+
+          const remove = document.createElement("button");
+          remove.className = "danger";
+          remove.textContent = "Delete";
+          remove.addEventListener("click", () => {
+            if (confirm(`Delete "${name}" from the list?`)) {
+              changeLevel({ action: "delete", name });
+            }
+          });
+          item.appendChild(remove);
+
+          levelsBox.appendChild(item);
+        });
+
+        showNotice("Levels loaded.");
+      } catch (error) {
+        levelsBox.textContent = error.message;
+        showNotice("Could not load levels. The secure backend must be installed.");
+      }
+    }
+
+    async function changeLevel(payload) {
+      try {
+        await request("/api/admin/levels", {
+          method: "POST",
+          body: JSON.stringify(payload)
+        });
+
+        showNotice("Change saved.");
+        await loadLevels();
+      } catch (error) {
+        showNotice(error.message);
+      }
+    }
+
+    document.getElementById("add-form").addEventListener("submit", async event => {
+      event.preventDefault();
+
+      const nameInput = document.getElementById("level-name");
+      const name = nameInput.value.trim();
+
+      if (!name) return;
+
+      try {
+        await changeLevel({ action: "add", name });
+        nameInput.value = "";
+      } catch (error) {
+        showNotice(error.message);
+      }
+    });
+
+    document.getElementById("refresh").addEventListener("click", loadLevels);
+
+    document.getElementById("logout").addEventListener("click", async () => {
+      try {
+        await request("/api/auth/logout", { method: "POST" });
+      } catch (_) {}
+
+      dashboard.hidden = true;
+      login.hidden = false;
+      showNotice("Logged out.");
+    });
+
+    // Ask the server whether an existing authenticated session is valid.
+    async function checkSession() {
+      try {
+        await request("/api/admin/levels");
+        login.hidden = true;
+        dashboard.hidden = false;
+        await loadLevels();
+      } catch (_) {
+        login.hidden = false;
+        dashboard.hidden = true;
+      }
+    }
+
+    checkSession();
+  </script>
 </body>
 </html>
