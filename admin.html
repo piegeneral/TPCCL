@@ -4,155 +4,310 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17121f">
   <title>TPCCL Developer Panel</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/reset.css">
-  <link rel="stylesheet" href="/css/typography.css">
-  <link rel="stylesheet" href="/css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+      background: #17121f;
+    }
 
     body {
-      margin: 0;
       min-height: 100vh;
-      background: #17151d;
-      color: #f5f1ff;
+      margin: 0;
+      padding: 0;
+      background: #17121f;
+      color: #f7f2ff;
       font-family: "Lexend Deca", sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
     }
 
-    header {
+    .topbar {
+      width: 100%;
       padding: 22px 18px;
-      background: #55239b;
-      border-bottom: 1px solid #7446b3;
+      background: #5d25a5;
+      border-bottom: 1px solid #7c4cba;
     }
 
-    header h1 {
+    .topbar-inner {
+      width: 100%;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .topbar h1 {
       margin: 0;
       font-size: 23px;
-    }
-
-    header p {
-      margin: 6px 0 0;
-      font-size: 13px;
-      opacity: .8;
-    }
-
-    main {
-      width: min(680px, calc(100% - 28px));
-      margin: 28px auto;
-    }
-
-    .card {
-      padding: 22px;
-      margin-bottom: 18px;
-      background: #211e29;
-      border: 1px solid #393243;
-      border-radius: 14px;
-    }
-
-    h2 { margin: 0 0 12px; font-size: 19px; }
-    p { line-height: 1.6; }
-    .muted { color: #bdb4ca; font-size: 13px; }
-
-    input, textarea {
-      display: block;
-      width: 100%;
-      margin: 10px 0;
-      padding: 13px;
-      border: 1px solid #51465f;
-      border-radius: 8px;
-      background: #15121b;
-      color: white;
-      font: inherit;
-    }
-
-    button, .button {
-      display: inline-block;
-      padding: 11px 15px;
-      margin: 5px 5px 5px 0;
-      border: 0;
-      border-radius: 8px;
-      background: #7137bd;
-      color: white;
-      font: inherit;
-      font-size: 14px;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    button:hover, .button:hover { background: #8852d1; }
-    button:disabled { opacity: .5; cursor: wait; }
-    .danger { background: #922f4a; }
-    .secondary { background: #393243; }
-
-    .level {
-      padding: 13px;
-      margin: 12px 0;
-      border: 1px solid #393243;
-      border-radius: 9px;
+      line-height: 1.35;
+      font-weight: 700;
+      letter-spacing: 0;
       overflow-wrap: anywhere;
     }
 
-    .level-name { font-weight: 700; }
-    #notice { white-space: pre-wrap; overflow-wrap: anywhere; }
-    [hidden] { display: none !important; }
+    .topbar p {
+      margin: 6px 0 0;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #eee0ff;
+    }
+
+    .page {
+      display: block;
+      width: calc(100% - 32px);
+      max-width: 680px;
+      margin: 26px auto;
+      padding: 0 0 30px;
+    }
+
+    .card {
+      display: block;
+      width: 100%;
+      margin: 0 0 18px;
+      padding: 20px;
+      background: #211b2b;
+      border: 1px solid #3b304a;
+      border-radius: 14px;
+    }
+
+    .card h2 {
+      margin: 0 0 12px;
+      color: #ffffff;
+      font-size: 19px;
+      line-height: 1.4;
+      font-weight: 700;
+      letter-spacing: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .card p {
+      margin: 0 0 14px;
+      font-size: 14px;
+      line-height: 1.65;
+      font-weight: 400;
+      overflow-wrap: anywhere;
+    }
+
+    .muted {
+      color: #c4b8d3;
+    }
+
+    label {
+      display: block;
+      margin: 14px 0 7px;
+      font-size: 14px;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    input {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      min-height: 46px;
+      margin: 0 0 12px;
+      padding: 12px;
+      border: 1px solid #574665;
+      border-radius: 9px;
+      outline: none;
+      background: #17121f;
+      color: #ffffff;
+      font: inherit;
+      font-size: 16px;
+    }
+
+    input:focus {
+      border-color: #ad82ee;
+      box-shadow: 0 0 0 2px #7137bd55;
+    }
+
+    button,
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 100%;
+      min-height: 42px;
+      margin: 5px 5px 5px 0;
+      padding: 10px 14px;
+      border: 0;
+      border-radius: 8px;
+      background: #7137bd;
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 13px;
+      line-height: 1.4;
+      font-weight: 500;
+      text-align: center;
+      text-decoration: none;
+      overflow-wrap: anywhere;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    button.secondary,
+    .back-link {
+      background: #393043;
+    }
+
+    button.danger {
+      background: #8c3049;
+    }
+
+    .level {
+      display: block;
+      width: 100%;
+      min-width: 0;
+      margin: 12px 0;
+      padding: 13px;
+      border: 1px solid #40344e;
+      border-radius: 10px;
+      background: #191521;
+      overflow-wrap: anywhere;
+    }
+
+    .level-name {
+      margin-bottom: 8px;
+      font-size: 14px;
+      line-height: 1.5;
+      font-weight: 600;
+      overflow-wrap: anywhere;
+    }
+
+    .level-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .level-actions button {
+      margin: 2px 2px 2px 0;
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      margin: 22px 0;
+      background: #40344e;
+    }
+
+    #notice {
+      margin: 0 0 14px;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    @media (max-width: 420px) {
+      .topbar {
+        padding: 18px 16px;
+      }
+
+      .topbar h1 {
+        font-size: 21px;
+      }
+
+      .page {
+        width: calc(100% - 24px);
+        margin-top: 18px;
+      }
+
+      .card {
+        padding: 16px;
+        border-radius: 12px;
+      }
+
+      .level-actions {
+        gap: 5px;
+      }
+
+      .level-actions button {
+        flex: 1 1 auto;
+      }
+    }
   </style>
 </head>
 
 <body>
-  <header>
-    <h1>TPCCL Developer Panel</h1>
-    <p>The Pie Consistency Challenge List · Administration</p>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <h1>TPCCL Developer Panel</h1>
+      <p>The Pie Consistency Challenge List</p>
+    </div>
   </header>
 
-  <main>
+  <main class="page">
     <section class="card" id="login">
       <h2>Developer verification</h2>
-      <p>Enter your private access code to continue to Google verification.</p>
+      <p>Enter your private access code to continue.</p>
 
       <form id="gate-form">
+        <label for="access-code">Access code</label>
         <input
           id="access-code"
           type="password"
-          placeholder="Private access code"
+          placeholder="Enter access code"
           autocomplete="current-password"
           required
         >
-        <button id="gate-button" type="submit">Verify access code</button>
+        <button id="gate-button" type="submit">
+          Verify access code
+        </button>
       </form>
-
-      <p class="muted">
-        Your access code must be configured securely on the server before this login can work.
-      </p>
     </section>
 
     <section class="card" id="dashboard" hidden>
       <h2>Level management</h2>
       <p class="muted">
-        Changes should be saved to the TPCCL repository after server authentication is configured.
+        Add levels, reorder the list, or remove levels from TPCCL.
       </p>
 
       <form id="add-form">
         <label for="level-name">New level name</label>
-        <input id="level-name" maxlength="100" placeholder="Enter a level name" required>
+        <input
+          id="level-name"
+          maxlength="100"
+          placeholder="Enter level name"
+          required
+        >
         <button type="submit">Add level</button>
       </form>
 
       <div class="divider"></div>
+
       <h2>Current levels</h2>
       <div id="levels">Loading levels...</div>
 
-      <button class="secondary" id="refresh" type="button">Refresh levels</button>
-      <button class="secondary" id="logout" type="button">Log out</button>
+      <div class="divider"></div>
+
+      <button class="secondary" id="refresh" type="button">
+        Refresh levels
+      </button>
+      <button class="secondary" id="logout" type="button">
+        Log out
+      </button>
     </section>
 
     <section class="card">
       <p id="notice" class="muted" role="status">Ready.</p>
-      <a class="button secondary" href="/">Back to TPCCL</a>
+      <a class="back-link" href="/">Back to TPCCL</a>
     </section>
   </main>
 
@@ -175,7 +330,9 @@
       const data = await response.json().catch(() => ({}));
 
       if (!response.ok) {
-        throw new Error(data.error || `Request failed (${response.status})`);
+        throw new Error(
+          data.error || `Request failed (${response.status})`
+        );
       }
 
       return data;
@@ -185,49 +342,52 @@
       notice.textContent = message;
     }
 
-    document.getElementById("gate-form").addEventListener("submit", async event => {
-      event.preventDefault();
+    document.getElementById("gate-form").addEventListener(
+      "submit",
+      async event => {
+        event.preventDefault();
 
-      const button = document.getElementById("gate-button");
-      button.disabled = true;
-      showNotice("Checking access code...");
+        const button = document.getElementById("gate-button");
+        button.disabled = true;
+        showNotice("Checking access code...");
 
-      try {
-        await request("/api/admin/gate", {
-          method: "POST",
-          body: JSON.stringify({
-            code: document.getElementById("access-code").value
-          })
-        });
+        try {
+          await request("/api/admin/gate", {
+            method: "POST",
+            body: JSON.stringify({
+              code: document.getElementById("access-code").value
+            })
+          });
 
-        showNotice("Access code accepted. Opening Google verification...");
-        window.location.href = "/api/auth/google";
-      } catch (error) {
-        showNotice(error.message);
-      } finally {
-        button.disabled = false;
+          showNotice("Code accepted. Opening Google verification...");
+          window.location.href = "/api/auth/google";
+        } catch (error) {
+          showNotice(error.message);
+        } finally {
+          button.disabled = false;
+        }
       }
-    });
+    );
 
     async function loadLevels() {
       levelsBox.textContent = "Loading levels...";
 
       try {
         const data = await request("/api/admin/levels");
-        const levels = data.levels;
 
-        if (!Array.isArray(levels)) {
-          throw new Error("Unexpected level data from the server.");
+        if (!Array.isArray(data.levels)) {
+          throw new Error("The server returned an invalid level list.");
         }
 
         levelsBox.replaceChildren();
 
-        if (levels.length === 0) {
+        if (data.levels.length === 0) {
           levelsBox.textContent = "No levels found.";
+          showNotice("Level list loaded.");
           return;
         }
 
-        levels.forEach((name, index) => {
+        data.levels.forEach((name, index) => {
           const item = document.createElement("div");
           item.className = "level";
 
@@ -236,21 +396,32 @@
           title.textContent = `${index + 1}. ${name}`;
           item.appendChild(title);
 
+          const actions = document.createElement("div");
+          actions.className = "level-actions";
+
           const up = document.createElement("button");
           up.textContent = "Move up";
           up.disabled = index === 0;
-          up.addEventListener("click", () =>
-            changeLevel({ action: "move", name, direction: "up" })
-          );
-          item.appendChild(up);
+          up.addEventListener("click", () => {
+            changeLevel({
+              action: "move",
+              name,
+              direction: "up"
+            });
+          });
+          actions.appendChild(up);
 
           const down = document.createElement("button");
           down.textContent = "Move down";
-          down.disabled = index === levels.length - 1;
-          down.addEventListener("click", () =>
-            changeLevel({ action: "move", name, direction: "down" })
-          );
-          item.appendChild(down);
+          down.disabled = index === data.levels.length - 1;
+          down.addEventListener("click", () => {
+            changeLevel({
+              action: "move",
+              name,
+              direction: "down"
+            });
+          });
+          actions.appendChild(down);
 
           const remove = document.createElement("button");
           remove.className = "danger";
@@ -260,15 +431,16 @@
               changeLevel({ action: "delete", name });
             }
           });
-          item.appendChild(remove);
+          actions.appendChild(remove);
 
+          item.appendChild(actions);
           levelsBox.appendChild(item);
         });
 
         showNotice("Levels loaded.");
       } catch (error) {
         levelsBox.textContent = error.message;
-        showNotice("Could not load levels. The secure backend must be installed.");
+        showNotice("Could not load levels. The backend must be configured.");
       }
     }
 
@@ -281,40 +453,51 @@
 
         showNotice("Change saved.");
         await loadLevels();
+        return true;
       } catch (error) {
         showNotice(error.message);
+        return false;
       }
     }
 
-    document.getElementById("add-form").addEventListener("submit", async event => {
-      event.preventDefault();
+    document.getElementById("add-form").addEventListener(
+      "submit",
+      async event => {
+        event.preventDefault();
 
-      const nameInput = document.getElementById("level-name");
-      const name = nameInput.value.trim();
+        const input = document.getElementById("level-name");
+        const name = input.value.trim();
 
-      if (!name) return;
+        if (!name) return;
 
-      try {
-        await changeLevel({ action: "add", name });
-        nameInput.value = "";
-      } catch (error) {
-        showNotice(error.message);
+        const saved = await changeLevel({ action: "add", name });
+
+        if (saved) {
+          input.value = "";
+        }
       }
-    });
+    );
 
-    document.getElementById("refresh").addEventListener("click", loadLevels);
+    document.getElementById("refresh").addEventListener(
+      "click",
+      loadLevels
+    );
 
-    document.getElementById("logout").addEventListener("click", async () => {
-      try {
-        await request("/api/auth/logout", { method: "POST" });
-      } catch (_) {}
+    document.getElementById("logout").addEventListener(
+      "click",
+      async () => {
+        try {
+          await request("/api/auth/logout", { method: "POST" });
+        } catch (_) {
+          // The server may not have its logout endpoint installed yet.
+        }
 
-      dashboard.hidden = true;
-      login.hidden = false;
-      showNotice("Logged out.");
-    });
+        dashboard.hidden = true;
+        login.hidden = false;
+        showNotice("Logged out.");
+      }
+    );
 
-    // Ask the server whether an existing authenticated session is valid.
     async function checkSession() {
       try {
         await request("/api/admin/levels");
